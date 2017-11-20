@@ -1,11 +1,11 @@
-var http = require('http');
+
 var fs   = require('fs');
+var querystring = require('querystring');
 
-var server = http.createServer(handler);
-   var allTheData = '';
+var handler=function(request,response){
 
-function handler (request,response){
   var endpoint = request.url;
+  var allTheData = '';
 
      if( endpoint === '/node' ){
        response.writeHead(200,{"Content-Type": "text/html"});
@@ -33,7 +33,7 @@ function handler (request,response){
 
      } else if (endpoint === '/create-post'){
 
-
+       //response.redirect(request.get('referer'));
 request.on('data', function (chunkOfData) {
 
     allTheData += chunkOfData;
@@ -41,7 +41,8 @@ request.on('data', function (chunkOfData) {
 
 request.on('end', function () {
 
-    console.log(allTheData);
+   response.writeHead(302,{'Location': '/../public/index.html'})
+    console.log(querystring.parse(allTheData));
     response.end();
 });
 
@@ -91,8 +92,8 @@ request.on('end', function () {
   //response.end();
 
 }
+
 }
 
-server.listen(3012, function() {
-  console.log("Server is listening on port 3010. Ready to accept requests!");
-});
+
+module.exports=handler;

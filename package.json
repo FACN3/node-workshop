@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/FACN3/node-workshop/issues"
   },
-  "homepage": "https://github.com/FACN3/node-workshop#readme"
+  "homepage": "https://github.com/FACN3/node-workshop#readme",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
 }
